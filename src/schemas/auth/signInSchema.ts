@@ -6,6 +6,6 @@ const signInSchema = z.object({
   password: z.string().min(1),
 });
 
-export type SignIn = z.infer<typeof signInSchema>;
+export type SignInSchemaType = z.infer<typeof signInSchema>;
 
 export default signInSchema;
