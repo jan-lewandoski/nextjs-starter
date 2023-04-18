@@ -18,8 +18,13 @@ const config = {
   parserOptions: {
     project: path.join(__dirname, "tsconfig.json"),
   },
-  plugins: ["@typescript-eslint"],
-  extends: ["next/core-web-vitals", "plugin:@typescript-eslint/recommended"],
+  plugins: ["@typescript-eslint", "sonarjs"],
+  extends: [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:tailwindcss/recommended",
+    "plugin:sonarjs/recommended",
+  ],
   rules: {
     "@typescript-eslint/consistent-type-imports": [
       "warn",

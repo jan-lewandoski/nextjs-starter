@@ -1,14 +1,3 @@
-import {
-  TextInput,
-  PasswordInput,
-  Paper,
-  Title,
-  Text,
-  Container,
-  Button,
-  Anchor,
-  Stack,
-} from "@mantine/core";
 import { useForm, zodResolver } from "@mantine/form";
 import { useMutation } from "@tanstack/react-query";
 import type { GetServerSidePropsContext } from "next";
@@ -17,6 +6,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { type ReactElement } from "react";
 import AuthLayout from "~/components/AuthLayout";
+import { Button } from "~/components/ui/button";
+import { Input } from "~/components/ui/input";
+import { Label } from "~/components/ui/label";
 import signUpSchema, {
   type SignUpSchemaType,
 } from "~/schemas/auth/signUpSchema";
@@ -62,44 +54,42 @@ export default function SignUpPage() {
   });
 
   return (
-    <Container size={420} my={40}>
-      <Paper shadow="md" p={30} mt={30} radius="md">
-        <Title order={3} align="center" mb={12}>
-          Create an account
-        </Title>
-        <form
-          onSubmit={form.onSubmit((values) => {
-            mutate(values);
-          })}
-        >
-          <Stack spacing={12}>
-            <TextInput
-              label="Email"
-              withAsterisk
-              {...form.getInputProps("email")}
-            />
-            <PasswordInput
-              label="Password"
-              withAsterisk
-              mt="md"
+    <div className="mx-auto my-10 grid max-w-md rounded-lg p-4 shadow-md">
+      <h1 className="text-center text-3xl text-gray-700">Create account</h1>
+      <form
+        onSubmit={form.onSubmit((values) => {
+          mutate(values);
+        })}
+      >
+        <div className="mt-4 grid items-center gap-6">
+          <div className="grid w-full items-center gap-1.5">
+            <Label htmlFor="email">Email</Label>
+            <Input id="email" {...form.getInputProps("email")} />
+          </div>
+          <div className="grid w-full items-center gap-1.5">
+            <Label htmlFor="password">Password</Label>
+            <Input
+              type="password"
+              id="password"
               {...form.getInputProps("password")}
             />
-          </Stack>
-          <Button fullWidth mt={24} type="submit" loading={isLoading}>
-            Sign up
-          </Button>
-        </form>
+          </div>
+        </div>
+        <Button type="submit" className="mt-6 w-full">
+          Sign up
+        </Button>
+      </form>
 
-        <Stack mt={32}>
-          <Text color="dimmed" size="sm" align="center">
-            Already have an account?
-            <Anchor ml={4} component={Link} href="/auth/sign-in" size="sm">
-              Sign in
-            </Anchor>
-          </Text>
-        </Stack>
-      </Paper>
-    </Container>
+      <span className="mt-8 flex w-fit justify-self-center text-center text-sm  text-gray-400">
+        Already have an account?
+        <Link
+          href="/auth/sign-in"
+          className="ml-1 flex w-fit justify-self-center text-center text-sm  text-sky-600 hover:text-sky-500"
+        >
+          Sign in
+        </Link>
+      </span>
+    </div>
   );
 }
 
