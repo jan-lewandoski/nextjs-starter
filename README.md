@@ -5,7 +5,7 @@
 - [Next.js](https://nextjs.org)
 - [NextAuth.js](https://next-auth.js.org)
 - [Prisma](https://prisma.io)
-- [Mantine](https://mantine.dev/)
+- [Tailwind](https://mantine.dev/](https://tailwindcss.com/)
 - [zod](https://zod.dev/)
 - [TanStack Query](https://tanstack.com/query/v3/)
 
